@@ -1,5 +1,3 @@
 FROM centos:7 
-ADD test.sh /home/test.sh
-RUN chmod +x /home/test.sh
 WORKDIR /home
-CMD ["/bin/sh","test.sh"]
+CMD ["/bin/sh","-c","while true;do echo 新的一天新的阳光;echo $date;sleep 10;done"]
