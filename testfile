@@ -1,1 +1,17 @@
-test1
+我们经常会遇到一些这样的下拉框，点击下拉框后，才获取下拉框中的值，作为测试，有时候就需要随机选中这个下拉框中的值。这种情况，常见于个人资料中的地区选择。
+
+
+示例脚本：
+ click element id=provinceName #点击地区 省
+ wait until element is enabled xpath=.//*[@id='provinceNameDataGrid']/tbody/tr #等待 省份下拉框的出现
+ ${count1} get matching xpath count xpath=.//*[@id='provinceNameDataGrid']/tbody/tr #获取省份下拉值的数量
+ ${s1} evaluate random.randint(1,${count1}) random #随机一个数值
+ click element xpath=.//*[@id='provinceNameDataGrid']/tbody/tr[${s1}]/td #点击随机后的省份（路径中用了上面的随机数字）
+ sleep 0.2
+ ${count2} get matching xpath count xpath=.//*[@id='cityNameDataGrid']/tbody/tr #获取 市 下拉值的数量
+ ${s2} evaluate random.randint(1,${count2}) random #随机一个数值
+ click element xpath=.//*[@id='cityNameDataGrid']/tbody/tr[${s2}]/td
+ sleep 0.2
+ ${count3} get matching xpath count xpath=.//*[@id='districtNameDataGrid']/tbody/tr #获取 县/区 下拉值的数量
+ ${s3} evaluate random.randint(1,${count3}) random #随机一个数值
+ click element xpath=.//*[@id='districtNameDataGrid']/tbody/tr[${s3}]/td
